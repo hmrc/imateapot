@@ -12,11 +12,26 @@
 
 #popup {
     position: absolute;
+    height: 50%;
+    width: 30%;
     right: 0.5%;
     bottom: 0.5%;
     border: solid 1px;
-    padding: 1%;
+    /*padding: 1%;*/
+}
 
+.box-header {
+    background-color: #005ea5;
+    padding-bottom: 10%;
+    left: 0px;
+    right: 0px;
+}
+
+.video-box {
+    left: 0px;
+    right: 0px;
+    padding-bottom: 80%;
+    border-bottom: solid 1px;
 }
 
 #close-popup {

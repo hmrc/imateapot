@@ -1,4 +1,6 @@
 "use strict";
+
+
 var showMain = function() {
     document.getElementById("chatbox").classList.toggle("hidden");
     document.getElementById("popup").classList.toggle("hidden");
