@@ -39,7 +39,7 @@ function getUserMediaSuccess(stream) {
   localVideo.srcObject = stream;
 }
 
-function start(isCaller) {
+function call(isCaller) {
   console.log("Starting call isCaller: " + isCaller)
   peerConnection = new RTCPeerConnection(peerConnectionConfig);
   peerConnection.onicecandidate = gotIceCandidate;
@@ -51,9 +51,15 @@ function start(isCaller) {
   }
 }
 
+function hangup() {
+  console.log("Hangup call");
+  serverConnection.send(JSON.stringify({'hangup': 'true'}));
+  peerConnection.close();
+}
+
 function gotMessageFromServer(message) {
   console.log("WebSocket>> " + JSON.stringify(message))
-  if(!peerConnection) start(false);
+  if(!peerConnection) call(false);
 
   var signal = JSON.parse(message.data);
 
@@ -71,6 +77,8 @@ function gotMessageFromServer(message) {
   } else if(signal.ice) {
     //console.log("WebSocket>> ICE Candidate: " + JSON.stringify(signal))
     peerConnection.addIceCandidate(new RTCIceCandidate(signal.ice)).catch(errorHandler);
+  } else if (signal.hangup) {
+    peerConnection.close();
   }
 }
 
