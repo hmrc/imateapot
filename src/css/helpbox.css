@@ -1,0 +1,45 @@
+#chatbox {
+    position: absolute;
+    right: 0.5%;
+    bottom: 0.5%;
+    border: solid 1px;
+    -moz-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    padding: 2px;
+}
+
+#popup {
+    position: absolute;
+    height: 50%;
+    width: 30%;
+    right: 0.5%;
+    bottom: 0.5%;
+    border: solid 1px;
+    /*padding: 1%;*/
+}
+
+.box-header {
+    background-color: #005ea5;
+    padding-bottom: 10%;
+    left: 0px;
+    right: 0px;
+}
+
+.video-box {
+    left: 0px;
+    right: 0px;
+    padding-bottom: 80%;
+    border-bottom: solid 1px;
+}
+
+#close-popup {
+    position: absolute;
+    right: 0.5%;
+    top: 0.5%;
+}
+
+.hidden {
+    display: none;
+}
