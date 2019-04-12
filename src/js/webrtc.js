@@ -52,6 +52,10 @@ function call(isCaller) {
     }
 }
 
+function share() {
+
+}
+
 function hangup() {
     console.log("Hangup call");
     serverConnection.send(JSON.stringify({'hangup': 'true'}));
