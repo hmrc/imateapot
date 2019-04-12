@@ -22,13 +22,28 @@ function pageReady() {
     serverConnection = new WebSocket('ws://192.168.160.148:8010');
     serverConnection.onmessage = gotMessageFromServer;
 
-    var constraints = {
+    var videoConstraints = {
         video: true,
         audio: true,
     };
 
+    var screenShareConstraints = {
+        audio: false,
+        video: {
+            mandatory: {
+                chromeMediaSource: 'desktop',
+                chromeMediaSourceId: 'screen:0',
+                maxWidth: 1280,
+                maxHeight: 720
+            },
+            optional: []
+        }
+    };
+
+
     if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia(constraints).then(getUserMediaSuccess).catch(errorHandler);
+        // navigator.mediaDevices.getUserMedia(videoConstraints).then(getUserMediaSuccess).catch(errorHandler);
+        navigator.mediaDevices.getUserMedia(screenShareConstraints).then(getScreenShareSuccess).catch(errorHandler);
     } else {
         alert('Your browser does not support getUserMedia API');
     }
@@ -37,6 +52,11 @@ function pageReady() {
 function getUserMediaSuccess(stream) {
     localStream = stream;
     localVideo.srcObject = stream;
+}
+
+function getScreenShareSuccess(stream) {
+    localStream = stream;
+    localVideo.src = window.URL.createObjectURL(stream);
 }
 
 function call(isCaller) {
@@ -53,11 +73,12 @@ function call(isCaller) {
 }
 
 function share() {
+    console.log("Sharing screen...");
 
 }
 
 function hangup() {
-    console.log("Hangup call");
+    console.log("Hangup call...");
     serverConnection.send(JSON.stringify({'hangup': 'true'}));
     closeRemote();
 }
