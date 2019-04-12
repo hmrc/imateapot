@@ -8,9 +8,10 @@
     -webkit-border-radius: 20px;
     border-radius: 20px;
     padding: 0.60%;
-    font-color: #ffffff;
+    color: #FFFFFF;
     font: BlinkMacSystemFont;
     background-color: #005ea5;
+    border-color: #005ea5;
 }
 
 #popup {
@@ -20,6 +21,7 @@
     right: 0.5%;
     bottom: 0.5%;
     border: solid 1px;
+
     /*padding: 1%;*/
 }
 
