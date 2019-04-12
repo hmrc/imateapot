@@ -108,7 +108,7 @@ function gotMessageFromServer(message) {
     } else if (signal.hangup) {
         closeRemote();
     } else if (signal.url) {
-        console.log("Remote URL: " + signal.url);
+        console.log("Remote URL: " + JSON.stringify(signal.url));
     }
 }
 
