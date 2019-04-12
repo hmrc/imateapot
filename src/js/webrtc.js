@@ -69,12 +69,8 @@ function call(isCaller) {
 
     if (isCaller) {
         peerConnection.createOffer().then(createdDescription).catch(errorHandler);
+        serverConnection.send(JSON.stringify({'url': window.location.href}));
     }
-}
-
-function share() {
-    console.log("Sharing screen...");
-
 }
 
 function hangup() {
@@ -111,6 +107,8 @@ function gotMessageFromServer(message) {
         peerConnection.addIceCandidate(new RTCIceCandidate(signal.ice)).catch(errorHandler);
     } else if (signal.hangup) {
         closeRemote();
+    } else if (signal.url) {
+        console.log("Remote URL: " + signal.url);
     }
 }
 
