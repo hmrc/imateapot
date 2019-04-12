@@ -3,7 +3,7 @@ var localStream;
 var remoteVideo;
 var peerConnection;
 var uuid;
-//var serverConnection;
+var serverConnection;
 
 var peerConnectionConfig = {
   'iceServers': [
@@ -19,8 +19,8 @@ function pageReady() {
   localVideo = document.getElementById('localVideo');
   remoteVideo = document.getElementById('remoteVideo');
 
-  //serverConnection = new WebSocket('wss://' + window.location.hostname + ':8443');
-  //serverConnection.onmessage = gotMessageFromServer;
+  serverConnection = new WebSocket('ws://192.168.160.148:8010');
+  serverConnection.onmessage = gotMessageFromServer;
 
   var constraints = {
     video: true,
@@ -51,17 +51,8 @@ function start(isCaller) {
   }
 }
 
-//GABOR
-function addIceCandidateHMRC {
-  peerConnection.addIceCandidate("192.168.160.148")
-}
-
-//BEN
-function addIceCandidateCustomer {
-  peerConnection.addIceCandidate("192.168.160.147")
-}
-
 function gotMessageFromServer(message) {
+  console.log("gotMessageFromServer: " + JSON.stringify(message))
   if(!peerConnection) start(false);
 
   var signal = JSON.parse(message.data);
@@ -84,7 +75,7 @@ function gotMessageFromServer(message) {
 function gotIceCandidate(event) {
   if(event.candidate != null) {
     console.log("ice: " + JSON.stringify(event.candidate));
-    //serverConnection.send(JSON.stringify({'ice': event.candidate, 'uuid': uuid}));
+    serverConnection.send(JSON.stringify({'ice': event.candidate, 'uuid': uuid}));
   }
 }
 
@@ -92,7 +83,7 @@ function createdDescription(description) {
   console.log('got description');
 
   peerConnection.setLocalDescription(description).then(function() {
-    //serverConnection.send(JSON.stringify({'sdp': peerConnection.localDescription, 'uuid': uuid}));
+  serverConnection.send(JSON.stringify({'sdp': peerConnection.localDescription, 'uuid': uuid}));
   }).catch(errorHandler);
 }
 
