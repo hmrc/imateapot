@@ -3,7 +3,7 @@ var localStream;
 var remoteVideo;
 var peerConnection;
 var uuid;
-//var serverConnection;
+var serverConnection;
 
 var peerConnectionConfig = {
   'iceServers': [
