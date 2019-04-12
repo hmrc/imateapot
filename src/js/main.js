@@ -48,6 +48,10 @@ const offerOptions = {
   offerToReceiveVideo: 1
 };
 
+const constraints = {audio: true, video: true};
+const configuration = {iceServers: [{urls: 'stuns:stun.example.org'}]};
+
+
 function getName(pc) {
   return (pc === pc1) ? 'pc1' : 'pc2';
 }
