@@ -42,8 +42,8 @@ function pageReady() {
 
 
     if (navigator.mediaDevices.getUserMedia) {
-        // navigator.mediaDevices.getUserMedia(videoConstraints).then(getUserMediaSuccess).catch(errorHandler);
-        navigator.mediaDevices.getUserMedia(screenShareConstraints).then(getScreenShareSuccess).catch(errorHandler);
+        navigator.mediaDevices.getUserMedia(videoConstraints).then(getUserMediaSuccess).catch(errorHandler);
+        // navigator.mediaDevices.getUserMedia(screenShareConstraints).then(getScreenShareSuccess).catch(errorHandler);
     } else {
         alert('Your browser does not support getUserMedia API');
     }
@@ -56,7 +56,7 @@ function getUserMediaSuccess(stream) {
 
 function getScreenShareSuccess(stream) {
     localStream = stream;
-    localVideo.src = window.URL.createObjectURL(stream);
+    // localVideo.src = window.URL.createObjectURL(stream);
 }
 
 function call(isCaller) {
