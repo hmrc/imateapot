@@ -55,6 +55,11 @@
     left: 92%;
 }
 
+.maximise-screen {
+    height: 500%;
+    width: 500%;
+}
+
 #screen-share {
     position: absolute;
     right: 50%;

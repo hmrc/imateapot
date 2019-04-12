@@ -7,6 +7,10 @@ helpbox.layout = {
         document.getElementById("popup").classList.toggle("hidden");
     },
 
+    maximiseBox: function () {
+    document.getElementById("maximise-button").classList.toggle("maximise-screen");
+    }
+
 };
 
 helpbox.ajax = {
@@ -38,6 +42,9 @@ helpbox.init = function () {
         if (e.target && e.target.id == "chatbox" || e.target.id == "close-popup") {
             helpbox.layout.toggleVisibility();
         }
+        else if (e.target && e.target.id == "maximise-screen") {
+            helpbox.layout.maximiseBox();
+            }
     });
 
 };
