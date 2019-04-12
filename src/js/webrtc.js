@@ -52,7 +52,12 @@ function start(isCaller) {
 }
 
 //GABOR
-function addIceCandidateGabor {
+function addIceCandidateHMRC {
+  peerConnection.addIceCandidate("192.168.160.148")
+}
+
+//BEN
+function addIceCandidateCustomer {
   peerConnection.addIceCandidate("192.168.160.147")
 }
 
