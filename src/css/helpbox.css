@@ -39,10 +39,26 @@
     border-bottom: solid 1px;
 }
 
+.header-buttons {
+    color: #FFFFFF;
+}
+
 #close-popup {
     position: absolute;
     right: 0.5%;
     top: 0.5%;
+}
+
+#maximise-button {
+    position: absolute;
+    right: 1%;
+    left: 92%;
+}
+
+#screen-share {
+    position: absolute;
+    right: 50%;
+    left: 50%
 }
 
 #close-hover:hover {
