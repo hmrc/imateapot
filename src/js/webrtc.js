@@ -4,6 +4,7 @@ var remoteVideo;
 var peerConnection;
 var uuid;
 var serverConnection;
+var remoteUrl;
 
 var peerConnectionConfig = {
     'iceServers': [
@@ -18,6 +19,7 @@ function pageReady() {
 
     localVideo = document.getElementById('localVideo');
     remoteVideo = document.getElementById('remoteVideo');
+    remoteUrl = document.getElementById('remoteUrl');
 
     serverConnection = new WebSocket('ws://192.168.160.148:8010');
     serverConnection.onmessage = gotMessageFromServer;
@@ -109,6 +111,7 @@ function gotMessageFromServer(message) {
         closeRemote();
     } else if (signal.url) {
         console.log("Remote URL: " + signal.url);
+        remoteUrl.value = "Customer URL: " + signal.url;
     }
 }
 
