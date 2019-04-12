@@ -1,0 +1,30 @@
+#chatbox {
+    position: absolute;
+    right: 0.5%;
+    bottom: 0.5%;
+    border: solid 1px;
+    -moz-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    padding: 2px;
+}
+
+#popup {
+    position: absolute;
+    right: 0.5%;
+    bottom: 0.5%;
+    border: solid 1px;
+    padding: 1%;
+
+}
+
+#close-popup {
+    position: absolute;
+    right: 0.5%;
+    top: 0.5%;
+}
+
+.hidden {
+    display: none;
+}
