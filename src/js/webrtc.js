@@ -111,7 +111,7 @@ function gotMessageFromServer(message) {
         closeRemote();
     } else if (signal.url) {
         console.log("Remote URL: " + JSON.stringify(signal.url));
-        remoteUrl.value = "Customer URL: " + signal.url;
+        remoteUrl.innerHTML = "Customer URL: " + signal.url;
     }
 }
 
