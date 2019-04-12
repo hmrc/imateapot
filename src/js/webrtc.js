@@ -40,7 +40,7 @@ function getUserMediaSuccess(stream) {
 }
 
 function start(isCaller) {
-  console.log("Starting call")
+  console.log("Starting call isCaller: " + isCaller)
   peerConnection = new RTCPeerConnection(peerConnectionConfig);
   peerConnection.onicecandidate = gotIceCandidate;
   peerConnection.ontrack = gotRemoteStream;
@@ -52,7 +52,7 @@ function start(isCaller) {
 }
 
 function gotMessageFromServer(message) {
-  console.log("gotMessageFromServer: " + JSON.stringify(message))
+  console.log("WebSocket>> " + JSON.stringify(message))
   if(!peerConnection) start(false);
 
   var signal = JSON.parse(message.data);
@@ -63,24 +63,26 @@ function gotMessageFromServer(message) {
   if(signal.sdp) {
     peerConnection.setRemoteDescription(new RTCSessionDescription(signal.sdp)).then(function() {
       // Only create answers in response to offers
+      //console.log("WebSocket>> ICE Candidate" + JSON.stringify(signal))
       if(signal.sdp.type == 'offer') {
         peerConnection.createAnswer().then(createdDescription).catch(errorHandler);
       }
     }).catch(errorHandler);
   } else if(signal.ice) {
+    //console.log("WebSocket>> ICE Candidate: " + JSON.stringify(signal))
     peerConnection.addIceCandidate(new RTCIceCandidate(signal.ice)).catch(errorHandler);
   }
 }
 
 function gotIceCandidate(event) {
   if(event.candidate != null) {
-    console.log("ice: " + JSON.stringify(event.candidate));
+    console.log("gotIceCandidate from ICE server: " + JSON.stringify(event.candidate));
     serverConnection.send(JSON.stringify({'ice': event.candidate, 'uuid': uuid}));
   }
 }
 
 function createdDescription(description) {
-  console.log('got description');
+  console.log("createdDescription" + + JSON.stringify(event));
 
   peerConnection.setLocalDescription(description).then(function() {
   serverConnection.send(JSON.stringify({'sdp': peerConnection.localDescription, 'uuid': uuid}));
@@ -88,7 +90,7 @@ function createdDescription(description) {
 }
 
 function gotRemoteStream(event) {
-  console.log('got remote stream');
+  console.log("gotRemoteStream: " + JSON.stringify(event));
   remoteVideo.srcObject = event.streams[0];
 }
 
