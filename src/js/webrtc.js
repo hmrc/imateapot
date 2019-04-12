@@ -51,6 +51,11 @@ function start(isCaller) {
   }
 }
 
+//GABOR
+function addIceCandidateGabor {
+  peerConnection.addIceCandidate("192.168.160.147")
+}
+
 function gotMessageFromServer(message) {
   if(!peerConnection) start(false);
 
